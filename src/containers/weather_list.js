@@ -1,6 +1,17 @@
 import React, {Component} from 'react';
+import ( connect ) from 'react-redux';
 
-export default class WeatherList extends Component {
+ class WeatherList extends Component {
+
+ 	renderWeather(cityData) {
+ 		return (
+ 			const name = cityData.city.name;
+
+ 			<tr key={name}>
+ 				<td>{name}</td>
+ 			</tr>
+ 			)
+ 	}
 
 	render(){
 		return (
@@ -8,14 +19,25 @@ export default class WeatherList extends Component {
 				<thead>
 					<tr>
 						<th> City</th>
+						<th> Temprature</th>
+						<th> Pressure</th>
+						<th> Humidity</th>
 					</tr>
 				</thead>
 
 				<tbody>
-					
+					{this.props.weather.map(this.renderWeather)}
 
 				</tbody>
 			</table>
 			)
 	}
 }
+
+function mapStateToProps({weather}) {
+
+	//const weather = state.weather
+	return { weather}; // {weather:weather}
+}
+
+export default connect (mapStateToProps)(WeatherList);
